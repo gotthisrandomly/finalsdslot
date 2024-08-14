@@ -1,4 +1,4 @@
-app sd777slots {
+app Myapp {
   wasp: {
     version: "^0.13.0"
   },
@@ -7,6 +7,7 @@ app sd777slots {
     rootComponent: import { Layout } from "@src/Layout.jsx",
   },
   db: {
+    system: PostgreSQL,
     prisma: {
       clientPreviewFeatures: ["extendedWhereUnique"]
     }
