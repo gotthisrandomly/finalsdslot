@@ -6,3 +6,39 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+model User {
+  id           Int           @id @default(autoincrement())
+  username     String        @unique
+  password     String
+  balance      Float         @default(0.0)
+  transactions Transaction[]
+  Game         Game[]
+}
+
+model Transaction {
+  id       Int      @id @default(autoincrement())
+  amount   Float
+  user     User     @relation(fields: [userId], references: [id])
+  userId   Int
+  type     String
+  dateTime DateTime @default(now())
+}
+
+model SlotMachine {
+  id      Int    @id @default(autoincrement())
+  name    String
+  rtpRate Float
+  Game    Game[]
+}
+
+model Game {
+  id            Int         @id @default(autoincrement())
+  user          User        @relation(fields: [userId], references: [id])
+  userId        Int
+  slotMachine   SlotMachine @relation(fields: [slotMachineId], references: [id])
+  slotMachineId Int
+  wager         Float
+  win           Float
+  dateTime      DateTime    @default(now())
+}
