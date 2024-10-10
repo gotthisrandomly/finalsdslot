@@ -1,6 +1,7 @@
 <?php
 require_once '../includes/functions.php';
 require_once '../includes/validation.php';
+require_once '../includes/oauth.php';
 
 session_start();
 
@@ -44,6 +45,10 @@ $csrf_token = generate_csrf_token();
         .container { max-width: 400px; margin: 0 auto; }
         .error { color: red; }
         .success { color: green; }
+        .oauth-buttons { margin-top: 20px; }
+        .oauth-button { display: inline-block; padding: 10px 20px; margin-right: 10px; text-decoration: none; color: #fff; border-radius: 5px; }
+        .google { background-color: #DB4437; }
+        .facebook { background-color: #4267B2; }
     </style>
 </head>
 <body>
@@ -72,6 +77,10 @@ $csrf_token = generate_csrf_token();
             
             <button type="submit">Login</button>
         </form>
+        <div class="oauth-buttons">
+            <a href="<?php echo get_google_auth_url(); ?>" class="oauth-button google">Login with Google</a>
+            <a href="<?php echo get_facebook_auth_url(); ?>" class="oauth-button facebook">Login with Facebook</a>
+        </div>
         <p>Don't have an account? <a href="/signup">Sign up</a></p>
     </div>
 </body>

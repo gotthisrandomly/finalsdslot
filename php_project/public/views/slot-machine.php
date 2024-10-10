@@ -2,6 +2,7 @@
 require_once '../includes/functions.php';
 require_once '../includes/slot_machine.php';
 require_once '../includes/validation.php';
+require_once '../includes/rate_limiter.php';
 
 session_start();
 
@@ -20,6 +21,8 @@ $error = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!verify_csrf_token($_POST['csrf_token'])) {
         $error = "Invalid CSRF token";
+    } elseif (is_rate_limited($user_id, 'slot_machine')) {
+        $error = "You're playing too fast. Please wait a moment before spinning again.";
     } else {
         $bet_amount = floatval($_POST['bet_amount']);
         $bet_error = validate_bet_amount($bet_amount, $balance);
