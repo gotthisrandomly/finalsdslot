@@ -5,25 +5,36 @@ require_once '../includes/functions.php';
 
 // Router
 $request = $_SERVER['REQUEST_URI'];
+$viewDir = '/home/engine/app/project/php_project/public/views';
 
 switch ($request) {
     case '/':
-        require __DIR__ . '/views/home.php';
+        require $viewDir . '/home.php';
         break;
     case '/login':
-        require __DIR__ . '/views/login.php';
+        require $viewDir . '/login.php';
         break;
     case '/signup':
-        require __DIR__ . '/views/signup.php';
+        require $viewDir . '/signup.php';
         break;
     case '/admin':
-        require __DIR__ . '/views/admin.php';
+        require $viewDir . '/admin.php';
         break;
     case '/slot-machine':
-        require __DIR__ . '/views/slot-machine.php';
+        require $viewDir . '/slot-machine.php';
         break;
+    case '/roulette':
+        require $viewDir . '/roulette.php';
+        break;
+    case '/deposit':
+        require $viewDir . '/deposit.php';
+        break;
+    case '/logout':
+        session_destroy();
+        header('Location: /');
+        exit;
     default:
         http_response_code(404);
-        require __DIR__ . '/views/404.php';
+        require $viewDir . '/404.php';
         break;
 }
