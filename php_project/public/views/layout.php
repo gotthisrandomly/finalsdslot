@@ -23,6 +23,7 @@ session_start();
             <?php if (isset($_SESSION['user_id'])): ?>
                 <li><a href="/slot-machine">Slot Machine</a></li>
                 <li><a href="/roulette">Roulette</a></li>
+                <li><a href="/blackjack">Blackjack</a></li>
                 <li><a href="/deposit">Deposit</a></li>
                 <li><a href="/responsible-gambling">Responsible Gambling</a></li>
                 <li><a href="/logout">Logout</a></li>
